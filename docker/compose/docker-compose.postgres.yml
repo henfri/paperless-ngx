@@ -36,7 +36,7 @@ services:
     image: postgres:13
     restart: unless-stopped
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - /path/to/paperless-data/database:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -56,10 +56,10 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - data:/usr/src/paperless/data
-      - media:/usr/src/paperless/media
-      - ./export:/usr/src/paperless/export
-      - ./consume:/usr/src/paperless/consume
+      - /path/to/paperless-data/data:/usr/src/paperless/data
+      - /path/to/paperless-data/media:/usr/src/paperless/media
+      - /path/to/documents/paperless/export:/usr/src/paperless/export
+      - /path/to/documents/paperless/consume:/usr/src/paperless/consume
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
